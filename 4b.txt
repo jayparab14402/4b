@@ -1,0 +1,49 @@
+Working with Terrain data.
+To add Raster Layer browse to the “10n060e_20101117_gmted_mea300.tif” file in Practical_no_4_data
+ folder.
+The terrain data is rendered in the QGIS Canvas. Each pixel in the terrain raster represents the 
+average elevation in meters at each location. Dark pixels represent areas with low altitude and 
+lighter pixels represent areas with high altitude.
+The coordinates for our area of interest i.e. Mt. Everest - is located at the coordinates 27.9881° N, 86.9253° E.
+ As QGIS uses the coordinates in (X,Y) format , so enter the coordinates as (Longitude, Latitude) i.e. (86.9253,27.9881)
+ at the bottom of QGIS window (Coordinate and press Enter). The viewport will be centered at this coordinate. Now to zoom in,
+ Enter 1:1000000 in the Scale field and press Enter.
+Now crop the raster to this area. Select the Clipper tool from Raster  Extraction 
+Clipper. (Required plugin- GdalTools)
+In the Clipper window, give name to output file as “everest”. Select the Clipping mode as Extent.
+Keeping the Clipper window open switch to the main QGIS window. Hold left mouse button and draw a rectangle covering the full 
+canvas.
+Return back in the Clipper window, the coordinates are auto-populated from selection. Check Load into canvas when finished check box,
+ and click on OK.
+Deselect the original layer from layer pane. A new layer is loaded in QGIS. This layer covers only the area around Mt. Everest. 
+To generate contour select the contour tool from Raster  Extraction  Contour.
+In the Contour dialog, select “everest” as the Input file. Give name to the Output file for contour lines as everest_countours.shp. 
+Generate contour lines for 100m
+intervals. Check the “Attribute name” option so elevation value will be recorded as attribute of each contour line and check “Load 
+into canvas when finished” then Click OK.
+Contour lines are loaded into the canvas. Each line represents a particular elevation value. Closer the lines, the steeper the slope.
+ Right click on the contours layer and choose “Open Attribute Table”.
+Each line feature has an attribute named ELEV. This is the height in meters that each line represents. Click on the column header a 
+couple of times to sort the values in descending order. Here we can see the line representing the highest elevation in our data, i.e.
+ Mt. Everest.
+Select the first row, and click on the “Zoom map to the selected rows” button.
+Return to the main QGIS window. We can see the selected contour line highlighted in yellow. This is the area of the highest elevation 
+present in our dataset.
+To display label with contour lines open property window for everest_contour layer and under labels tab check the checkbox Label with and
+ from dropdown select ELEV. Now just for faster processing further we can hide the label again by unchecking the same checkbox.
+Now to create a hillshade map from the raster, select Raster  Analysis  DEM (Terrain Models).
+In the DEM (Terrain Models) dialog, choose “everest” as the Input file. Give name to the Output file as everest_hillshade.tif. Select 
+Hillshade as the Mode. Check the “Load into canvas when finished” option and click OK.
+One more raster layer is loaded into QGIS canvas. To zoomed-in near the Mt.Everest region, right click on the everest_hillshade layer and
+ choose Zoom to Layer Extent.
+Now we can see the full extent of the hillshade raster.  Everest_hillshade>properties>singleband pasedocoor
+We can visualize contour layer and verify analysis by exporting the contours layer as KML and viewing it in Google Earth, right click on the
+ everest_contours layer, select Save as...
+Select Keyhole Markup Language [KML] as the Format. Give name to output as contours.kml and click OK. (plugin required: georeference GDAL).
+Search for Google Earth on browser or click on this link https://www.google.com/intl/en_in/earth/versions/ then click on Launch Earth button.
+We can see the google earth on screen; just scroll it so that Asian region we can see on screen.
+Click on menu button and then select “Projects” option.
+Click on “Open” and then select “Import KML file from computer” and select the kml file and then click on open after this we can see out file
+ is opened with google earth.
+ 
+
